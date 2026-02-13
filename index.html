@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Models Directory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ivory: #fefef8;
+            --sage: #9caf88;
+            --forest: #2d5016;
+            --moss: #4a7c59;
+            --mint: #a8d5ba;
+            --olive: #556b2f;
+            --lime: #c8d96f;
+            --deep-green: #1a3a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background: var(--ivory);
+            color: var(--deep-green);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Header with botanical illustrations */
+        header {
+            position: relative;
+            padding: 80px 20px 60px;
+            text-align: center;
+            background: linear-gradient(to bottom, #e8f5e9, var(--ivory));
+            overflow: hidden;
+            border-bottom: 3px solid var(--sage);
+        }
+
+        /* Botanical SVG decorations in header */
+        .header-plant-left,
+        .header-plant-right {
+            position: absolute;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .header-plant-left {
+            bottom: -20px;
+            left: -50px;
+            width: 300px;
+            height: 300px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cg fill='%232d5016' opacity='0.3'%3E%3Cpath d='M150,280 Q130,250 120,220 Q110,190 115,160 Q120,130 140,110 Q150,100 160,95' stroke='%234a7c59' stroke-width='3' fill='none'/%3E%3Cellipse cx='120' cy='220' rx='35' ry='50' transform='rotate(-30 120 220)'/%3E%3Cellipse cx='125' cy='180' rx='30' ry='45' transform='rotate(-45 125 180)'/%3E%3Cellipse cx='135' cy='140' rx='28' ry='42' transform='rotate(-60 135 140)'/%3E%3Cellipse cx='145' cy='105' rx='25' ry='38' transform='rotate(-70 145 105)'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: contain;
+            animation: sway 6s ease-in-out infinite;
+        }
+
+        .header-plant-right {
+            bottom: -30px;
+            right: -40px;
+            width: 350px;
+            height: 350px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 350 350'%3E%3Cg fill='%234a7c59' opacity='0.25'%3E%3Cpath d='M180,300 Q185,260 190,230 Q195,200 190,170 Q185,140 175,115' stroke='%232d5016' stroke-width='4' fill='none'/%3E%3Ccircle cx='175' cy='250' r='25'/%3E%3Ccircle cx='200' cy='245' r='22'/%3E%3Ccircle cx='170' cy='210' r='28'/%3E%3Ccircle cx='195' cy='205' r='24'/%3E%3Ccircle cx='175' cy='170' r='26'/%3E%3Ccircle cx='185' cy='135' r='23'/%3E%3Ccircle cx='180' cy='120' r='20'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: contain;
+            animation: sway 7s ease-in-out infinite reverse;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(0deg) translateY(0); }
+            50% { transform: rotate(3deg) translateY(-5px); }
+        }
+
+        .leaf-accent {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin: 0 15px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M15,5 Q20,10 22,15 Q20,20 15,25 Q10,20 8,15 Q10,10 15,5 Z' fill='%234a7c59'/%3E%3Cpath d='M15,5 L15,25' stroke='%232d5016' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: contain;
+            vertical-align: middle;
+            animation: leafRotate 4s ease-in-out infinite;
+        }
+
+        @keyframes leafRotate {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        /* Butterflies */
+        .butterfly {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .butterfly svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .butterfly-1 {
+            top: 20%;
+            left: 10%;
+            animation: flyPath1 20s ease-in-out infinite;
+        }
+
+        .butterfly-2 {
+            top: 40%;
+            right: 15%;
+            animation: flyPath2 25s ease-in-out infinite 2s;
+        }
+
+        .butterfly-3 {
+            top: 60%;
+            left: 20%;
+            animation: flyPath3 18s ease-in-out infinite 4s;
+        }
+
+        .butterfly-4 {
+            top: 30%;
+            right: 25%;
+            animation: flyPath4 22s ease-in-out infinite 1s;
+        }
+
+        @keyframes flyPath1 {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(100px, -30px) rotate(15deg);
+            }
+            50% {
+                transform: translate(200px, 20px) rotate(-10deg);
+            }
+            75% {
+                transform: translate(100px, 40px) rotate(20deg);
+            }
+        }
+
+        @keyframes flyPath2 {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(-120px, 40px) rotate(-20deg);
+            }
+            50% {
+                transform: translate(-200px, -20px) rotate(15deg);
+            }
+            75% {
+                transform: translate(-80px, 30px) rotate(-15deg);
+            }
+        }
+
+        @keyframes flyPath3 {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            33% {
+                transform: translate(150px, -50px) rotate(25deg) scale(1.1);
+            }
+            66% {
+                transform: translate(80px, -80px) rotate(-20deg) scale(0.9);
+            }
+        }
+
+        @keyframes flyPath4 {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            30% {
+                transform: translate(-100px, -40px) rotate(-25deg);
+            }
+            60% {
+                transform: translate(-180px, 30px) rotate(20deg);
+            }
+            90% {
+                transform: translate(-60px, -20px) rotate(-10deg);
+            }
+        }
+
+        @keyframes wingFlap {
+            0%, 100% {
+                transform: rotateY(0deg);
+            }
+            50% {
+                transform: rotateY(60deg);
+            }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            color: var(--forest);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+            letter-spacing: 2px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--moss);
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1.2s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 35px;
+        }
+
+        .model-card {
+            background: white;
+            border: 2px solid var(--sage);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(45, 80, 22, 0.08);
+            animation: cardSlideUp 0.6s ease-out both;
+        }
+
+        .model-card:nth-child(1) { animation-delay: 0.1s; }
+        .model-card:nth-child(2) { animation-delay: 0.2s; }
+        .model-card:nth-child(3) { animation-delay: 0.3s; }
+        .model-card:nth-child(4) { animation-delay: 0.4s; }
+        .model-card:nth-child(5) { animation-delay: 0.5s; }
+        .model-card:nth-child(6) { animation-delay: 0.6s; }
+        .model-card:nth-child(7) { animation-delay: 0.7s; }
+        .model-card:nth-child(8) { animation-delay: 0.8s; }
+
+        @keyframes cardSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .model-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(45, 80, 22, 0.15);
+            border-color: var(--moss);
+        }
+
+        .card-header {
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 2px solid var(--sage);
+        }
+
+        .model-card:nth-child(1) .card-header { background: linear-gradient(135deg, #c8d96f, #a8d5ba); }
+        .model-card:nth-child(2) .card-header { background: linear-gradient(135deg, #9caf88, #4a7c59); }
+        .model-card:nth-child(3) .card-header { background: linear-gradient(135deg, #a8d5ba, #9caf88); }
+        .model-card:nth-child(4) .card-header { background: linear-gradient(135deg, #556b2f, #4a7c59); }
+        .model-card:nth-child(5) .card-header { background: linear-gradient(135deg, #c8d96f, #9caf88); }
+        .model-card:nth-child(6) .card-header { background: linear-gradient(135deg, #4a7c59, #2d5016); }
+        .model-card:nth-child(7) .card-header { background: linear-gradient(135deg, #a8d5ba, #c8d96f); }
+        .model-card:nth-child(8) .card-header { background: linear-gradient(135deg, #9caf88, #556b2f); }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border: 3px solid var(--forest);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .logo svg {
+            width: 45px;
+            height: 45px;
+        }
+
+        .model-card:hover .logo {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .model-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--deep-green);
+            font-weight: 700;
+        }
+
+        .card-body {
+            padding: 30px;
+            background: linear-gradient(to bottom, white, #fafff7);
+        }
+
+        .description {
+            font-size: 1rem;
+            color: var(--forest);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .capabilities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tag {
+            background: var(--mint);
+            color: var(--forest);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid var(--sage);
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: var(--sage);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(45, 80, 22, 0.15);
+        }
+
+        .visit-link {
+            display: inline-block;
+            background: var(--moss);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.3);
+        }
+
+        .visit-link:hover {
+            background: var(--forest);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(45, 80, 22, 0.4);
+        }
+
+        .visit-link::after {
+            content: ' →';
+            transition: margin-left 0.3s ease;
+        }
+
+        .visit-link:hover::after {
+            margin-left: 8px;
+        }
+
+        /* Footer with botanical illustrations */
+        footer {
+            position: relative;
+            margin-top: 80px;
+            padding: 100px 20px 40px;
+            text-align: center;
+            background: linear-gradient(to top, #e8f5e9, var(--ivory));
+            border-top: 3px solid var(--sage);
+            overflow: hidden;
+        }
+
+        .footer-plants {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200'%3E%3Cg fill='%234a7c59' opacity='0.25'%3E%3C!-- Left fern --%3E%3Cpath d='M50,200 L50,100 M50,180 Q30,170 20,160 M50,160 Q35,150 25,140 M50,140 Q40,130 30,120 M50,120 Q45,110 40,100' stroke='%232d5016' stroke-width='3' fill='none'/%3E%3Cellipse cx='20' cy='160' rx='15' ry='8' transform='rotate(-20 20 160)'/%3E%3Cellipse cx='25' cy='140' rx='18' ry='9' transform='rotate(-15 25 140)'/%3E%3Cellipse cx='30' cy='120' rx='16' ry='8' transform='rotate(-10 30 120)'/%3E%3C!-- Center tall grass --%3E%3Cpath d='M300,200 Q290,150 295,100 M320,200 Q315,140 310,90 M340,200 Q345,160 340,110' stroke='%239caf88' stroke-width='2' fill='none'/%3E%3C!-- Right branch --%3E%3Cpath d='M600,200 L600,80 M600,180 Q630,170 650,165 M600,160 Q625,155 645,150 M600,140 Q620,138 640,135 M600,120 Q615,120 635,118' stroke='%232d5016' stroke-width='3' fill='none'/%3E%3Ccircle cx='650' cy='165' r='8'/%3E%3Ccircle cx='645' cy='150' r='7'/%3E%3Ccircle cx='640' cy='135' r='6'/%3E%3C!-- Leaves scattered --%3E%3Cpath d='M800,180 Q810,170 800,160 Q790,170 800,180' fill='%23a8d5ba'/%3E%3Cpath d='M850,190 Q865,185 860,175 Q850,180 850,190' fill='%23c8d96f'/%3E%3Cpath d='M950,170 Q960,165 955,155 Q945,160 950,170' fill='%239caf88'/%3E%3Cpath d='M1100,185 Q1115,178 1110,168 Q1100,175 1100,185' fill='%234a7c59'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            background-position: bottom;
+            background-size: 1200px 200px;
+            pointer-events: none;
+            animation: plantSway 8s ease-in-out infinite;
+        }
+
+        @keyframes plantSway {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-20px); }
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 2;
+            color: var(--forest);
+            font-size: 1rem;
+        }
+
+        .footer-divider {
+            width: 100px;
+            height: 3px;
+            background: var(--moss);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .models-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .header-plant-left,
+            .header-plant-right {
+                width: 200px;
+                height: 200px;
+            }
+
+            .card-header {
+                padding: 24px;
+            }
+
+            .card-body {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-plant-left"></div>
+        <div class="header-plant-right"></div>
+        
+        <!-- Butterflies -->
+        <div class="butterfly butterfly-1">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="35" cy="40" rx="20" ry="28" fill="#ff6b9d" opacity="0.8" transform="rotate(-20 35 40)">
+                    <animate attributeName="ry" values="28;32;28" dur="0.3s" repeatCount="indefinite"/>
+                </ellipse>
+                <ellipse cx="65" cy="40" rx="20" ry="28" fill="#ff6b9d" opacity="0.8" transform="rotate(20 65 40)">
+                    <animate attributeName="ry" values="28;32;28" dur="0.3s" repeatCount="indefinite"/>
+                </ellipse>
+                <ellipse cx="30" cy="65" rx="15" ry="22" fill="#ffd93d" opacity="0.9" transform="rotate(-15 30 65)">
+                    <animate attributeName="ry" values="22;25;22" dur="0.3s" repeatCount="indefinite"/>
+                </ellipse>
+                <ellipse cx="70" cy="65" rx="15" ry="22" fill="#ffd93d" opacity="0.9" transform="rotate(15 70 65)">
+                    <animate attributeName="ry" values="22;25;22" dur="0.3s" repeatCount="indefinite"/>
+                </ellipse>
+                <ellipse cx="50" cy="50" rx="5" ry="35" fill="#4a7c59"/>
+                <circle cx="50" cy="30" r="6" fill="#2d5016"/>
+            </svg>
+        </div>
+
+        <div class="butterfly butterfly-2">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="35" cy="40" rx="20" ry="28" fill="#a78bfa" opacity="0.8" transform="rotate(-20 35 40)">
+                    <animate attributeName="ry" values="28;32;28" dur="0.35s" repeatCount="indefinite"/>
+                </ellipse>
+                <ellipse cx="65" cy="40" rx="20" ry="28" fill="#a78bfa" opacity="0.8" transform="rotate(20 65 40)">
+                    <animate attributeName="ry" values="28;32;28" dur="0.35s" repeatCount="indefinite"/>
+                </ellipse>
+                <ellipse cx="30" cy="65" rx="15" ry="22" fill="#c8d96f" opacity="0.9" transform="rotate(-15 30 65)">
+                    <animate attributeName="ry" values="22;25;22" dur="0.35s" repeatCount="indefinite"/>
+                </ellipse>
+                <ellipse cx="70" cy="65" rx="15" ry="22" fill="#c8d96f" opacity="0.9" transform="rotate(15 70 65)">
+                    <animate attributeName="ry" values="22;25;22" dur="0.35s" repeatCount="indefinite"/>
+                </ellipse>
+                <ellipse cx="50" cy="50" rx="5" ry="35" fill="#4a7c59"/>
+                <circle cx="50" cy="30" r="6" fill="#2d5016"/>
+            </svg>
+        </div>
+
+        <div class="butterfly butterfly-3">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="35" cy="40" rx="20" ry="28" fill="#4ecdc4" opacity="0.8" transform="rotate(-20 35 40)">
+                    <animate attributeName="ry" values="28;32;28" dur="0.28s" repeatCount="indefinite"/>
+                </ellipse>
+                <ellipse cx="65" cy="40" rx="20" ry="28" fill="#4ecdc4" opacity="0.8" transform="rotate(20 65 40)">
+                    <animate attributeName="ry" values="28;32;28" dur="0.28s" repeatCount="indefinite"/>
+                </ellipse>
+                <ellipse cx="30" cy="65" rx="15" ry="22" fill="#ff9a76" opacity="0.9" transform="rotate(-15 30 65)">
+                    <animate attributeName="ry" values="22;25;22" dur="0.28s" repeatCount="indefinite"/>
+                </ellipse>
+                <ellipse cx="70" cy="65" rx="15" ry="22" fill="#ff9a76" opacity="0.9" transform="rotate(15 70 65)">
+                    <animate attributeName="ry" values="22;25;22" dur="0.28s" repeatCount="indefinite"/>
+                </ellipse>
+                <ellipse cx="50" cy="50" rx="5" ry="35" fill="#4a7c59"/>
+                <circle cx="50" cy="30" r="6" fill="#2d5016"/>
+            </svg>
+        </div>
+
+        <div class="butterfly butterfly-4">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="35" cy="40" rx="20" ry="28" fill="#f472b6" opacity="0.8" transform="rotate(-20 35 40)">
+                    <animate attributeName="ry" values="28;32;28" dur="0.32s" repeatCount="indefinite"/>
+                </ellipse>
+                <ellipse cx="65" cy="40" rx="20" ry="28" fill="#f472b6" opacity="0.8" transform="rotate(20 65 40)">
+                    <animate attributeName="ry" values="28;32;28" dur="0.32s" repeatCount="indefinite"/>
+                </ellipse>
+                <ellipse cx="30" cy="65" rx="15" ry="22" fill="#a8d5ba" opacity="0.9" transform="rotate(-15 30 65)">
+                    <animate attributeName="ry" values="22;25;22" dur="0.32s" repeatCount="indefinite"/>
+                </ellipse>
+                <ellipse cx="70" cy="65" rx="15" ry="22" fill="#a8d5ba" opacity="0.9" transform="rotate(15 70 65)">
+                    <animate attributeName="ry" values="22;25;22" dur="0.32s" repeatCount="indefinite"/>
+                </ellipse>
+                <ellipse cx="50" cy="50" rx="5" ry="35" fill="#4a7c59"/>
+                <circle cx="50" cy="30" r="6" fill="#2d5016"/>
+            </svg>
+        </div>
+
+        <span class="leaf-accent"></span>
+        <h1>AI Models Garden</h1>
+        <span class="leaf-accent"></span>
+        <p class="subtitle">AI floats above the garden soil, soft as the shadow of a blooming tulip.</p>
+    </header>
+
+    <div class="container">
+        <div class="models-grid">
+            <!-- ChatGPT -->
+            <div class="model-card">
+                <div class="card-header">
+                    <div class="logo">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="35" r="12" fill="#10a37f"/>
+                            <circle cx="35" cy="55" r="12" fill="#10a37f"/>
+                            <circle cx="65" cy="55" r="12" fill="#10a37f"/>
+                            <path d="M50,35 L35,55 M50,35 L65,55 M35,55 L65,55" stroke="#10a37f" stroke-width="5" stroke-linecap="round"/>
+                            <circle cx="50" cy="70" r="9" fill="#19c37d"/>
+                        </svg>
+                    </div>
+                    <h2 class="model-name">ChatGPT</h2>
+                </div>
+                <div class="card-body">
+                    <p class="description">
+                        OpenAI's powerful conversational AI that can write, code, analyze, and solve complex problems. Your intelligent assistant for creative and analytical tasks.
+                    </p>
+                    <div class="capabilities">
+                        <span class="tag">Writing</span>
+                        <span class="tag">Coding</span>
+                        <span class="tag">Analysis</span>
+                        <span class="tag">Translation</span>
+                    </div>
+                    <a href="https://chat.openai.com" class="visit-link" target="_blank">Visit ChatGPT</a>
+                </div>
+            </div>
+
+            <!-- Claude -->
+            <div class="model-card">
+                <div class="card-header">
+                    <div class="logo">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="25" width="60" height="50" rx="10" fill="#cc9b7a" opacity="0.25"/>
+                            <rect x="25" y="30" width="50" height="42" rx="8" fill="#d97757" opacity="0.5"/>
+                            <rect x="30" y="35" width="40" height="35" rx="6" fill="#d97757"/>
+                            <circle cx="42" cy="48" r="3.5" fill="#000"/>
+                            <circle cx="58" cy="48" r="3.5" fill="#000"/>
+                            <path d="M40,60 Q50,66 60,60" stroke="#000" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h2 class="model-name">Claude</h2>
+                </div>
+                <div class="card-body">
+                    <p class="description">
+                        Anthropic's advanced AI assistant focused on helpful, harmless, and honest interactions. Excels at long-form content, research, and complex reasoning tasks.
+                    </p>
+                    <div class="capabilities">
+                        <span class="tag">Research</span>
+                        <span class="tag">Coding</span>
+                        <span class="tag">Writing</span>
+                        <span class="tag">Analysis</span>
+                    </div>
+                    <a href="https://claude.ai" class="visit-link" target="_blank">Visit Claude</a>
+                </div>
+            </div>
+
+            <!-- Grok -->
+            <div class="model-card">
+                <div class="card-header">
+                    <div class="logo">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="25" y="25" width="50" height="50" rx="5" fill="#000"/>
+                            <path d="M40,45 L35,50 L40,55 M60,45 L65,50 L60,55" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
+                            <rect x="42" y="62" width="16" height="4" rx="2" fill="#fff"/>
+                        </svg>
+                    </div>
+                    <h2 class="model-name">Grok</h2>
+                </div>
+                <div class="card-body">
+                    <p class="description">
+                        xAI's conversational model with real-time web access and a witty personality. Stay updated with current events and get unique perspectives on trending topics.
+                    </p>
+                    <div class="capabilities">
+                        <span class="tag">Real-time</span>
+                        <span class="tag">News</span>
+                        <span class="tag">Chat</span>
+                        <span class="tag">Trends</span>
+                    </div>
+                    <a href="https://grok.x.ai" class="visit-link" target="_blank">Visit Grok</a>
+                </div>
+            </div>
+
+            <!-- Gemini -->
+            <div class="model-card">
+                <div class="card-header">
+                    <div class="logo">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M25,45 L40,25 L55,45 L70,25 L75,35" stroke="#4285f4" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M75,65 L60,75 L45,55 L30,75 L25,65" stroke="#ea4335" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="50" cy="50" r="8" fill="#fbbc04"/>
+                        </svg>
+                    </div>
+                    <h2 class="model-name">Gemini</h2>
+                </div>
+                <div class="card-body">
+                    <p class="description">
+                        Google's multimodal AI that processes text, images, audio, and video. Seamlessly integrated with Google Workspace for enhanced productivity.
+                    </p>
+                    <div class="capabilities">
+                        <span class="tag">Multimodal</span>
+                        <span class="tag">Images</span>
+                        <span class="tag">Google Suite</span>
+                        <span class="tag">Coding</span>
+                    </div>
+                    <a href="https://gemini.google.com" class="visit-link" target="_blank">Visit Gemini</a>
+                </div>
+            </div>
+
+            <!-- DALL-E -->
+            <div class="model-card">
+                <div class="card-header">
+                    <div class="logo">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="20" width="60" height="60" rx="8" fill="#000"/>
+                            <rect x="28" y="28" width="44" height="44" rx="5" fill="#fff"/>
+                            <circle cx="42" cy="42" r="9" fill="#ff6b6b"/>
+                            <circle cx="58" cy="58" r="9" fill="#4ecdc4"/>
+                            <rect x="50" y="33" width="20" height="20" rx="3" fill="#ffd93d" opacity="0.8"/>
+                        </svg>
+                    </div>
+                    <h2 class="model-name">DALL-E</h2>
+                </div>
+                <div class="card-body">
+                    <p class="description">
+                        OpenAI's image generation AI that creates stunning visuals from text descriptions. Perfect for art, design mockups, and creative visualization.
+                    </p>
+                    <div class="capabilities">
+                        <span class="tag">Image Gen</span>
+                        <span class="tag">Art</span>
+                        <span class="tag">Design</span>
+                        <span class="tag">Creative</span>
+                    </div>
+                    <a href="https://openai.com/dall-e-3" class="visit-link" target="_blank">Visit DALL-E</a>
+                </div>
+            </div>
+
+            <!-- Midjourney -->
+            <div class="model-card">
+                <div class="card-header">
+                    <div class="logo">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="25" width="60" height="50" rx="5" fill="#000"/>
+                            <rect x="26" y="31" width="48" height="38" rx="3" fill="#fff"/>
+                            <path d="M30,45 Q50,35 70,45" stroke="#ff6b9d" stroke-width="4" fill="none" stroke-linecap="round"/>
+                            <path d="M30,55 Q50,65 70,55" stroke="#c44569" stroke-width="4" fill="none" stroke-linecap="round"/>
+                            <circle cx="40" cy="50" r="2.5" fill="#000"/>
+                            <circle cx="60" cy="50" r="2.5" fill="#000"/>
+                        </svg>
+                    </div>
+                    <h2 class="model-name">Midjourney</h2>
+                </div>
+                <div class="card-body">
+                    <p class="description">
+                        Premium AI art generator known for producing highly artistic and imaginative images. Popular among digital artists and creative professionals.
+                    </p>
+                    <div class="capabilities">
+                        <span class="tag">Art Gen</span>
+                        <span class="tag">Creative</span>
+                        <span class="tag">Design</span>
+                        <span class="tag">Visual</span>
+                    </div>
+                    <a href="https://www.midjourney.com" class="visit-link" target="_blank">Visit Midjourney</a>
+                </div>
+            </div>
+
+            <!-- Stable Diffusion -->
+            <div class="model-card">
+                <div class="card-header">
+                    <div class="logo">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50,20 L73,35 L73,65 L50,80 L27,65 L27,35 Z" fill="#8b5cf6" opacity="0.3"/>
+                            <path d="M50,28 L68,40 L68,60 L50,72 L32,60 L32,40 Z" fill="#8b5cf6" opacity="0.5"/>
+                            <path d="M50,36 L63,45 L63,55 L50,64 L37,55 L37,45 Z" fill="#8b5cf6"/>
+                            <circle cx="50" cy="50" r="10" fill="#fff"/>
+                            <circle cx="50" cy="50" r="5" fill="#8b5cf6"/>
+                        </svg>
+                    </div>
+                    <h2 class="model-name">Stable Diffusion</h2>
+                </div>
+                <div class="card-body">
+                    <p class="description">
+                        Open-source image generation model that runs locally or in the cloud. Highly customizable for artists and developers seeking full creative control.
+                    </p>
+                    <div class="capabilities">
+                        <span class="tag">Open Source</span>
+                        <span class="tag">Local Gen</span>
+                        <span class="tag">Custom</span>
+                        <span class="tag">Art</span>
+                    </div>
+                    <a href="https://stability.ai" class="visit-link" target="_blank">Visit Stability AI</a>
+                </div>
+            </div>
+
+            <!-- DeepSeek -->
+            <div class="model-card">
+                <div class="card-header">
+                    <div class="logo">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="30" fill="#1e40af" opacity="0.2"/>
+                            <circle cx="50" cy="50" r="22" fill="#1e40af" opacity="0.4"/>
+                            <circle cx="50" cy="50" r="14" fill="#1e40af" opacity="0.6"/>
+                            <circle cx="50" cy="50" r="8" fill="#1e40af"/>
+                            <path d="M50,28 L50,20 M50,72 L50,80 M28,50 L20,50 M72,50 L80,50" stroke="#1e40af" stroke-width="4" stroke-linecap="round"/>
+                            <path d="M35,35 L28,28 M65,35 L72,28 M35,65 L28,72 M65,65 L72,72" stroke="#1e40af" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h2 class="model-name">DeepSeek</h2>
+                </div>
+                <div class="card-body">
+                    <p class="description">
+                        Chinese AI company's breakthrough model offering powerful reasoning at lower computational costs. Competitive alternative for coding and complex problem-solving.
+                    </p>
+                    <div class="capabilities">
+                        <span class="tag">Reasoning</span>
+                        <span class="tag">Coding</span>
+                        <span class="tag">Efficient</span>
+                        <span class="tag">Analysis</span>
+                    </div>
+                    <a href="https://www.deepseek.com" class="visit-link" target="_blank">Visit DeepSeek</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-plants"></div>
+        <div class="footer-content">
+            <p style="font-size: 1.1rem; font-weight: 500;">A gentle wind tends the garden, and silent words make the flowers understand.</p>
+            <div class="footer-divider"></div>
+            <p style="opacity: 0.8;">AI Models Garden © 2025</p>
+        </div>
+    </footer>
+</body>
+</html>
